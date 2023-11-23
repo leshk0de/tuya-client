@@ -94,8 +94,9 @@ def pull_data(event, context):
                 if item["code"] in skipp_list:
                     continue
                 
-                point = Point(item["code"]).tag("model", DEVICE_MODEL).tag("dp_id", item["dp_id"]).tag("custom_name", item["custom_name"]).field("value", item["value"])
-                client.write(point)
+                # write the data in a better format to the same database.
+                point2 = Point(DEVICE_ID).tag("model", DEVICE_MODEL).tag("dp_id", item["dp_id"]).tag("measurement", item["code"]).tag("custom_name", item["custom_name"]).field("value", item["value"])
+                client.write(point2)
 
         
             #client.write_points(data_points)

@@ -8,8 +8,9 @@ from influxdb_client_3 import InfluxDBClient3, Point
 from google.cloud import secretmanager
 
 # Set up device_id
-DEVICE_ID = "ebe49d5b115ec2631cxghe"
-DEVICE_MODEL = "pH-W3988"
+DEVICE_ID = "ebad6594f89024c0dfek7k"
+DEVICE_MODEL = "TH06WB3S"
+DEVICE_ALIAS = "HydroP_External-TH-Sensor"
 SECRET_ID = os.getenv('SECRET_ID', "projects/953089058593/secrets/tuya-hydrop-secrets")
 
 skipp_list = ["sensor_list"]
@@ -96,10 +97,7 @@ def pull_data(event, context):
                 # Skip list - this is a list of data that we don't want to write to InfluxDB
                 if item["code"] in skipp_list:
                     continue
-                
-                point = Point(item["code"]).tag("model", DEVICE_MODEL).tag("dp_id", item["dp_id"]).tag("custom_name", item["custom_name"]).field("value", item["value"])
-                print(point)
-                client.write(point)
+    
 
                 # write the data in a better format to the same database.
                 point2 = Point(DEVICE_ID).tag("model", DEVICE_MODEL).tag("dp_id", item["dp_id"]).tag("measurement", item["code"]).tag("custom_name", item["custom_name"]).field("value", item["value"])

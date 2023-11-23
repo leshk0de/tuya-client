@@ -17,13 +17,4 @@ variable "function_base_name" {
   default     = "tuya-hydrop"
   
 }
-variable "function_phw3988" {
-  type        = string
-  default     = "tuya-hydrop-ph-w3988"
-  
-}
-variable "function_smartplug" {
-  type        = string
-  default     = "tuya-hydrop-smart-plug"
-  
-}
+

@@ -1,0 +1,5 @@
+tuya-connector-python
+influxdb3-python
+google-cloud-secret-manager
+google-cloud-storage
+pandas
